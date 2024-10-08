@@ -1,0 +1,43 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Create New Listing</h2>
+    <br>
+    <form action="{% url 'create'%}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="Enter Title" >
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter Description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="imageurl" >Image URL</label>
+            <input type="text" name="imageurl" class="form-control" id="image URL" placeholder="Image URL" >
+        </div>
+        {% comment %} <div class="mb-3">
+            <label for="imageurl" class="form-label">Image URL</label>
+            <input type="url" class="form-control" id="imageurl" placeholder="Enter Image URL" >
+        </div> {% endcomment %}
+        
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" min="0" name="price" class="form-control" id="price" placeholder="Enter Price" >
+        </div>
+        
+        <div class="mb-3">
+            <label for="category"> Choose the category: </label>
+            <select name="category" id="category">
+                {% for cate in categories %}
+                <option value={{ cate }}>{{ cate }}</option>
+                {% endfor %}
+              </select>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-outline-success">Confirm</button>
+    </form>
+{% endblock %}
